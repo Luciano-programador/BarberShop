@@ -11,12 +11,22 @@
     
       
     <header class="home__nav">
-      <section class="menu__hamburger">
-          <div class="hamburger">
-            <div class="hamburger__line"></div>
-            <div class="hamburger__line"></div>
-            <div class="hamburger__line"></div>
-          </div>
+          <div class="menu-hamburguesa">
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+     <nav class="sidebar">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Proyectos</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+</div>
       </section>
         <img src="./assets/logoBanner.png" alt="logo1">
         <div class="home__nav__text">
@@ -63,6 +73,16 @@
       </div>
   </div> 
  </div>
+ <div class="calendly-container">
+        <h1>Reserva una cita</h1>
+        <p>Elige el horario que mejor te convenga para agendar nuestra reunión:</p>
+        
+        
+        <iframe src="https://calendly.com/castellanosluciano18/30min" width="100%" height="700" frameborder="0"></iframe>
+    </div>
+
+    <button class="message__button"></button>
+
   <footer>
     <div class="contact-section">
     <h2>Contacto</h2>
@@ -100,7 +120,8 @@
 
     <div class="separator"></div>
 
-    <p class="footer-copy">© Copyright Barbershop 2024</p>
+    <p class="footer-copy">© Copyright Barbershop 2025</p>
+    <p>Creado por <a href="#">Luciano Castellanos💚</a></p>
 
 
   </footer>
@@ -213,7 +234,6 @@ color: #FFFFFF;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .home__nav button:hover {
   background-color: #E9C664;
   color: black;
@@ -271,7 +291,12 @@ color: #FFFFFF;
   margin-bottom: 15px;
   color: #d4af37;
 }
-
+.sidebar{
+  display: none;
+}
+.menu-hamburguesa{
+  display: none;
+}
 .service-card h3 {
 
 
@@ -418,9 +443,39 @@ width: 238px;
     color: #555;
     margin-top: 10px;
 }
+.calendly-container {
+    text-align: center;
+    max-width: 1500px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    color: #0044cc;
+    margin-bottom: 20px;
+}
+p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+.message__button {
+  display: block;
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: yellow;
+  margin-top: 900px;
+  margin-left: 900px;
+}
 @media screen and (max-width: 768px) {
     .home__nav__text{
       display: none;
+    }
+    .home__nav button{
+      margin-right: 0px;
+      width: 100px;
     }
     .contact-section{
       padding: 0;
@@ -432,24 +487,95 @@ width: 238px;
       flex-wrap: wrap;
       gap: 20px;
     }
-.menu__hamburger {
-  display: flex;
-  align-items: center;
-  width: 15%;
-  height: 100%;
+.menu-hamburguesa {
+    position: relative;
+    width: 40px;
+    height: 40px;
 }
-.hamburger{
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-container {
+    position: relative;
+    z-index: 1000;
+}
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 25px;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    z-index: 1100; 
+}
+
+.hamburger span {
+    display: block;
     width: 100%;
+    height: 4px;
+    background: #333;
+    border-radius: 4px;
+    transition: 0.4s ease;
 }
-.hamburger__line {
-  width: 20px;
-  border: solid 2px orange;
+
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: translateY(12px) rotate(45deg);
 }
+
+#menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
 }
+
+#menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: translateY(-12px) rotate(-45deg);
+}
+
+/* MENÚ LATERAL */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px; /* escondido */
+    width: 260px;
+    height: 100vh;
+    background: #222;
+    padding-top: 80px;
+    transition: 0.4s ease;
+    z-index: 1000;
+}
+
+
+#menu-toggle:checked ~ .sidebar {
+    left: 0;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 30px;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background: #333;
+}}
 </style>
-</html>
+</html> 
