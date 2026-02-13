@@ -27,7 +27,6 @@
         </ul>
     </nav>
 </div>
-      </section>
         <img src="./assets/logoBanner.png" alt="logo1">
         <div class="home__nav__text">
             <p class="home__text">Inicio</p>
@@ -81,7 +80,9 @@
         <iframe src="https://calendly.com/castellanosluciano18/30min" width="100%" height="700" frameborder="0"></iframe>
     </div>
 
-    <button class="message__button"></button>
+    <a href="https://wa.me/1234567890" target="_blank" class="message__button">
+        <img src="https://img.icons8.com/color/48/whatsapp.png" alt="WhatsApp" style="width: 30px; height: 30px;">
+    </a>
 
   <footer>
     <div class="contact-section">
@@ -121,13 +122,13 @@
     <div class="separator"></div>
 
     <p class="footer-copy">© Copyright Barbershop 2025</p>
-    <p>Creado por <a href="#">Luciano Castellanos💚</a></p>
+    <p>Creado por <a class="credits" href="#">Luciano Castellanos💚</a></p>
 
 
   </footer>
 </body>
 <style>
-    body {
+body {
   margin: 0;
   padding: 0;
   background-color: #000000;
@@ -192,7 +193,7 @@ color: #FFFFFF;
   top: 50%;     
   left: 50%;    
   transform: translate(-50%, -50%);
-  max-width: 800px;
+  max-width: 800px; /* Revertido a original */
   z-index: 2;   
 } 
 .home__services {
@@ -222,6 +223,9 @@ color: #FFFFFF;
 .home__text:hover {
     color: aliceblue;
     transition: 0.5s;
+}
+.menu__hamburger{
+  display: none;
 }
 .home__nav button {
   width: 180px;
@@ -269,7 +273,7 @@ color: #FFFFFF;
 .services-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+  gap: 25px; /* Revertido a original */
   max-width: 600px;
 }
 
@@ -445,10 +449,25 @@ width: 238px;
 }
 .calendly-container {
     text-align: center;
-    max-width: 1500px;
     width: 100%;
     background-color: #fff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 0px, 0px, 0px, 0px; 
+}
+.calendly-container h1 {
+    font-size: 28px;
+    color: #0044cc;
+    margin-bottom: 20px;
+}
+.calendly-container p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+.calendly-container iframe {
+    border: none;
+    border-radius: 8px;
+    height: 700px;
 }
 h1 {
     color: #0044cc;
@@ -460,19 +479,80 @@ p {
     margin-bottom: 20px;
 }
 .message__button {
-  display: block;
   position: fixed;
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  background-color: yellow;
-  margin-top: 900px;
-  margin-left: 900px;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #E9C664;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+.message__button:hover {
+  background-color: #d4af37;
+  transform: scale(1.1);
+}
+.message__button img {
+  width: 30px;
+  height: 30px;
 }
 @media screen and (max-width: 768px) {
+  html {
+    overflow-x: hidden; 
+    width: 100%;
+  }
+
     .home__nav__text{
-      display: none;
+      display: none ;
     }
+    /* SIDEBAR (siempre visible pero fuera de pantalla) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px; /* Oculta fuera de pantalla */
+    width: 260px;
+    height: 100vh;
+    background: #222;
+    padding-top: 80px;
+    transition: 0.4s ease;
+    z-index: 1000;
+    display: block; /* IMPORTANTE: Nunca display:none */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 30px;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background: #333;
+}
+
+/* Cuando el checkbox se activa, la sidebar aparece */
+#menu-toggle:checked ~ .sidebar {
+    left: 0;
+}
+    
     .home__nav button{
       margin-right: 0px;
       width: 100px;
@@ -488,13 +568,10 @@ p {
       gap: 20px;
     }
 .menu-hamburguesa {
+    display: block;
     position: relative;
     width: 40px;
     height: 40px;
-}
-
-#menu-toggle {
-    display: none;
 }
 
 .menu-container {
@@ -529,6 +606,153 @@ p {
 #menu-toggle:checked + .hamburger span:nth-child(1) {
     transform: translateY(12px) rotate(45deg);
 }
+@media screen and (max-width: 480px) {
+    body {
+        overflow-x: hidden; 
+         }
+    .sidebar {
+        width: 260px;
+        padding-top: 80px;
+    }
+    #menu-toggle:checked + .hamburger + .sidebar {
+        left: 0;
+    }
+    .sidebar ul li a {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    .home__nav {
+        height: 60px;
+    }
+    .home__nav img {
+        width: 150px;
+        margin-left: 20px;
+    }
+    .home__nav button {
+        width: 80px;
+        height: 35px;
+        margin-right: 10px;
+    }
+    .home__banner {
+        height: 80vh;
+    }
+    .home__logo {
+        max-width: 900px;
+        width: auto;
+    }
+    .services__title {
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .services-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 90%;
+        text-align: center;
+    }
+    .service-card {
+        display: flex;
+        padding: 15px 15px;
+        max-width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    }
+    .service-card h3 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .service-card p {
+        font-size: 13px;
+    }
+    .calendly-container {
+        border: 1px solid #e8d5a2;
+    }
+    .calendly-container h1 {
+        font-size: 24px;
+    }
+    .calendly-container p {
+        font-size: 14px;
+    }
+    .calendly-container iframe {
+        height: 600px; 
+    }
+    .contact-section h2 {
+        font-size: 28px;
+    }
+    .contact-section p.subtitle {
+        max-width: 90%;
+        font-size: 13px;
+    }
+    .contact-info {
+        gap: 20px;
+    }
+    .contact-item {
+        max-width: 100%;
+    }
+    .contact-text {
+        width: auto;
+        text-align: center;
+    }
+    .footer-copy {
+        font-size: 11px;
+    }
+    .message__button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        margin-top: 0;
+        margin-left: 0;
+        width: 60px;
+        height: 60px;
+    }
+    .calendly-container {
+        border: 1px solid #e8d5a2;
+        overflow: hidden; 
+        box-sizing: border-box;
+    }
+    .calendly-container iframe {
+        height: 600px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+.menu-hamburguesa {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    z-index: 1100;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: #333;
+    border-radius: 4px;
+    transition: 0.4s ease;
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: translateY(12px) rotate(45deg);
+}
 
 #menu-toggle:checked + .hamburger span:nth-child(2) {
     opacity: 0;
@@ -538,11 +762,11 @@ p {
     transform: translateY(-12px) rotate(-45deg);
 }
 
-/* MENÚ LATERAL */
+/* Sidebar Styles */
 .sidebar {
     position: fixed;
     top: 0;
-    left: -260px; /* escondido */
+    left: -260px;
     width: 260px;
     height: 100vh;
     background: #222;
@@ -551,10 +775,10 @@ p {
     z-index: 1000;
 }
 
-
 #menu-toggle:checked ~ .sidebar {
     left: 0;
 }
+
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -576,6 +800,19 @@ p {
 
 .sidebar ul li a:hover {
     background: #333;
-}}
+}
+@media screen and (min-width: 768px) {
+  .menu-hamburguesa {
+    display: none;
+  }
+  #menu-toggle:checked ~ .sidebar {
+    left: 0;
+}
+
+}
+.credits{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;}
 </style>
 </html> 
